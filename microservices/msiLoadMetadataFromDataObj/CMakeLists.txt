@@ -71,6 +71,7 @@ set(
       ${PLUGIN}
       MODULE
       ${CMAKE_SOURCE_DIR}/libmsiLoadMetadataFromDataObj.cpp
+      ${CMAKE_SOURCE_DIR}/../core/src/eraUtil.cpp
       )
 
   target_include_directories(

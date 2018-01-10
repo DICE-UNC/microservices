@@ -4,9 +4,17 @@
 #include <stdarg.h>
 #include "eraUtil.h"
 
-
-
-
+#include "rsGenQuery.hpp"
+#include "rsCollCreate.hpp"
+#include "rsObjStat.hpp"
+#include "rsGeneralAdmin.hpp"
+#include "rsDataObjOpen.hpp"
+#include "rsDataObjRead.hpp"
+#include "rsDataObjClose.hpp"
+#include "rsDataObjLseek.hpp"
+#include "rsDataObjCopy.hpp"
+#include "rsModAVUMetadata.hpp"
+#include "rsModAccessControl.hpp"
 
 
 /*
@@ -169,12 +177,12 @@ recursiveCollCopy(collInp_t *destCollInp, collInp_t *srcCollInp, rsComm_t *rsCom
 	
 
 	/* check for proper inputs */
-	if ((destCollInp == NULL) || (destCollInp->collName == NULL)) {
+	if ((destCollInp == NULL) || strlen(destCollInp->collName) == 0) {
 		rodsLog (LOG_ERROR, "recursiveCollCopy: destination collection input is NULL");
 		return (USER__NULL_INPUT_ERR);
 	}
 
-	if ((srcCollInp == NULL) || (srcCollInp->collName == NULL)) {
+	if ((srcCollInp == NULL) || strlen(srcCollInp->collName) == 0 ) {
 		rodsLog (LOG_ERROR, "recursiveCollCopy: source collection input is NULL");
 		return (USER__NULL_INPUT_ERR);
 	}
